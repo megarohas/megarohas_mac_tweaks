@@ -35,6 +35,9 @@ com.adobe.CCLibrary) выгружены и переведены в постоя�
 `launchctl disable gui/<uid>/<label>` (без sudo, plist'ы в /Library не тронуты).
 Installer-демон com.adobe.acc.installer.v2 оставлен — нужен для обновлений.
 Откат: `launchctl enable gui/<uid>/<label>` для каждого + перелогин.
+Также отключено FinderSync-расширение Adobe (пункты CC в контекстном меню):
+`pluginkit -e ignore -i com.adobe.acc.anc.AdobeCreativeCloud.AdobeContextMenuExtension`
+(откат — тот же с `-e use`).
 Уже было сделано ранее: аналитика Apple выключена, Touch ID для sudo настроен,
 Siri выключена (Apple Intelligence недоступен для аккаунта — выключать нечего).
 Осознанно отклонено владельцем: Reduce motion/transparency (эстетика), ревизия
