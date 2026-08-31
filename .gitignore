@@ -1,0 +1,5 @@
+*.log
+*.pgdump
+*.dump
+audit-*.txt
+.DS_Store
