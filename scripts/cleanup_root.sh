@@ -28,29 +28,29 @@ just_rm() { # удаление без бэкапа (крупные бандлы)
 }
 unload() { launchctl bootout "system/$1" 2>/dev/null && echo "  ⏹ выгружен $1"; return 0; }
 
-echo "═══ 1/12 Turbo Boost Switcher (Intel-only, приложение удалено) ═══"
+echo "═══ 1/13 Turbo Boost Switcher (Intel-only, приложение удалено) ═══"
 bk_rm /Library/PrivilegedHelperTools/com.rugarciap.TurboBoost260Helper
 
-echo "═══ 2/12 Macs Fan Control (Air M4 безвентиляторный) ═══"
+echo "═══ 2/13 Macs Fan Control (Air M4 безвентиляторный) ═══"
 bk_rm /Library/PrivilegedHelperTools/com.crystalidea.macsfancontrol.smcwrite
 
-echo "═══ 3/12 cDock Injector (x86, не работает при SIP) ═══"
+echo "═══ 3/13 cDock Injector (x86, не работает при SIP) ═══"
 bk_rm /Library/PrivilegedHelperTools/com.macenhance.cDock.Injector
 
-echo "═══ 4/12 GOG Galaxy ClientService ═══"
+echo "═══ 4/13 GOG Galaxy ClientService ═══"
 unload com.gog.galaxy.ClientService
 bk_rm /Library/LaunchDaemons/com.gog.galaxy.ClientService.plist \
       /Library/PrivilegedHelperTools/com.gog.galaxy.ClientService
 
-echo "═══ 5/12 Kairos awdltool ═══"
+echo "═══ 5/13 Kairos awdltool ═══"
 unload com.kairos.awdltool.xpc
 bk_rm /Library/LaunchDaemons/com.kairos.awdltool.xpc.plist \
       /Library/PrivilegedHelperTools/com.kairos.awdltool.xpc
 
-echo "═══ 6/12 CleanMyMac 4 Agent ═══"
+echo "═══ 6/13 CleanMyMac 4 Agent ═══"
 bk_rm /Library/PrivilegedHelperTools/com.macpaw.CleanMyMac4.Agent
 
-echo "═══ 7/12 OpenVPN Connect (заменён Amnezia/Outline) ═══"
+echo "═══ 7/13 OpenVPN Connect (заменён Amnezia/Outline) ═══"
 unload org.openvpn.client
 unload org.openvpn.helper
 bk_rm /Library/LaunchDaemons/org.openvpn.client.plist \
@@ -58,7 +58,7 @@ bk_rm /Library/LaunchDaemons/org.openvpn.client.plist \
 just_rm /Library/Frameworks/OpenVPNConnect.framework \
         /Library/Frameworks/OVPNHelper.framework
 
-echo "═══ 8/12 Fresco Logic FL2000 (адаптер продан) ═══"
+echo "═══ 8/13 Fresco Logic FL2000 (адаптер продан) ═══"
 unload com.frescologic.fl2000_daemon
 bk_rm /Library/LaunchDaemons/com.frescologic.fl2000_daemon.plist \
       /Library/LaunchAgents/com.frescologic.fl2000_display.plist \
@@ -66,20 +66,20 @@ bk_rm /Library/LaunchDaemons/com.frescologic.fl2000_daemon.plist \
       /usr/local/libexec/fl2000_daemon \
       /usr/local/libexec/fl2000_display
 
-echo "═══ 9/12 DisplayLink (адаптер продан; драйвер свободно доступен на synaptics.com) ═══"
+echo "═══ 9/13 DisplayLink (адаптер продан; драйвер свободно доступен на synaptics.com) ═══"
 pkill -f DisplayLinkUserAgent 2>/dev/null
 pkill -f DisplayLinkXpcService 2>/dev/null
 bk_rm /Library/LaunchAgents/com.displaylink.loginscreen.plist
 just_rm "/Applications/DisplayLink Manager.app"
 
-echo "═══ 10/12 Rogue Amoeba ACE (Loopback удалён) ═══"
+echo "═══ 10/13 Rogue Amoeba ACE (Loopback удалён) ═══"
 unload com.rogueamoeba.aceagent.label
 unload com.rogueamoeba.acetool.label
 bk_rm /Library/LaunchDaemons/com.rogueamoeba.aceagent.plist \
       /Library/LaunchDaemons/com.rogueamoeba.acetool.plist \
       "/Library/Audio/Plug-Ins/HAL/ACE.driver"
 
-echo "═══ 11/12 TeamViewer (штатный деинсталлятор, с настройками) ═══"
+echo "═══ 11/13 TeamViewer (штатный деинсталлятор, с настройками) ═══"
 TV_UNINST="/Library/Application Support/TeamViewer/TeamViewerUninstaller.app/Contents/Helpers/UninstallTeamViewer"
 if [ -x "$TV_UNINST" ]; then
   "$TV_UNINST" --force --delete-settings && echo "  ✕ TeamViewer удалён штатно"
@@ -95,16 +95,15 @@ else
   just_rm /Applications/TeamViewer.app "/Library/Application Support/TeamViewer"
 fi
 
-echo "═══ 12/12 Хвосты: Photoshop 2025 + старый janitor-демон v1 ═══"
+echo "═══ 12/13 Хвосты: Photoshop 2025 + старый janitor-демон v1 ═══"
 just_rm "/Applications/Adobe Photoshop 2025"
 unload com.user.cleaner
 bk_rm /Library/LaunchDaemons/com.user.cleaner.plist
 
-# ── SwitchResX (кандидат, НЕ согласован — раскомментируй при желании) ────────
-# Утилита управления разрешениями мониторов; приложение на диске не найдено.
-# unload fr.madrau.switchresx.helper
-# bk_rm /Library/LaunchDaemons/fr.madrau.switchresx.helper.plist \
-#       /Library/PrivilegedHelperTools/fr.madrau.switchresx.helper
+echo "═══ 13/13 SwitchResX helper (приложение удалено) ═══"
+unload fr.madrau.switchresx.helper
+bk_rm /Library/LaunchDaemons/fr.madrau.switchresx.helper.plist \
+      /Library/PrivilegedHelperTools/fr.madrau.switchresx.helper
 
 echo
 echo "✅ Root-чистка завершена. Бэкапы: $BK"
