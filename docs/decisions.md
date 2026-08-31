@@ -29,11 +29,16 @@
 ## Общесистемные настройки (обсуждены 2026-08-31)
 
 Применено: Power Nap выключен на батарее (`pmset -b powernap 0`), Wake on LAN
-выключен (`pmset -a womp 0`). Уже было сделано ранее: аналитика Apple выключена,
-Touch ID для sudo настроен, Siri выключена (Apple Intelligence недоступен для
-аккаунта — выключать нечего). Осознанно отклонено владельцем: Reduce
-motion/transparency (эстетика), ревизия Login Items (всё используется),
-Spotlight-исключения (сам при случае), автозапуск Adobe CC (агенты и так спят).
+выключен (`pmset -a womp 0`). Автозапуск Adobe Creative Cloud отключён —
+три пользовательских агента (com.adobe.ccxprocess, com.adobe.AdobeDesktopService,
+com.adobe.CCLibrary) выгружены и переведены в постоянный disabled через
+`launchctl disable gui/<uid>/<label>` (без sudo, plist'ы в /Library не тронуты).
+Installer-демон com.adobe.acc.installer.v2 оставлен — нужен для обновлений.
+Откат: `launchctl enable gui/<uid>/<label>` для каждого + перелогин.
+Уже было сделано ранее: аналитика Apple выключена, Touch ID для sudo настроен,
+Siri выключена (Apple Intelligence недоступен для аккаунта — выключать нечего).
+Осознанно отклонено владельцем: Reduce motion/transparency (эстетика), ревизия
+Login Items (всё используется), Spotlight-исключения (сам при случае).
 
 ## Планы на осень 2026
 
