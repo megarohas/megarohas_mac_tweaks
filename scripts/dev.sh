@@ -11,6 +11,10 @@
 # PostgreSQL@14 остаётся в автозапуске (решение владельца), MongoDB — свой
 # LaunchAgent com.megarohas.mongod. Их этот скрипт не трогает.
 #
+# Ручной режим — решение от 2026-08-31, не догма. Если какой-то сервис снова
+# нужен постоянно: `brew services start <svc>` вернёт его в автозапуск, и этот
+# скрипт просто перестанет быть для него нужным.
+#
 # Установка алиаса:  echo 'alias dev="bash $HOME/Dev\ Projects/megarohas_mac_tweaks/scripts/dev.sh"' >> ~/.zshrc
 
 set -u
